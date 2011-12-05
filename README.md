@@ -1,10 +1,9 @@
 ####Design idea  
 
 1. Make an optimizer extension for PHP by C language  
-2. The API is same as memcache.
-3. The storage granularity is small. For example, the 'key' is a record of certain table.  
-4. It uses the way of sharing memory to store data.  
-5. In order to being beneficial to performance optimize, the data will never be deleted (can be full scale clearance)  
+2. The API is same as memcache. 
+3. It uses the way of sharing memory to store data.  
+4. In order to being beneficial to performance optimize, the data will never be deleted (can be clear all)  
 
 ####Configuration  
 
