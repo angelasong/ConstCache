@@ -1,4 +1,4 @@
-####Design idea####  
+####Design idea  
 
 1. Make an optimizer extension for PHP by C language  
 2. The API is same as memcache.
@@ -6,7 +6,7 @@
 4. It uses the way of sharing memory to store data.  
 5. In order to being beneficial to performance optimize, the data will never be deleted (can be full scale clearance)  
 
-####Configuration####  
+####Configuration  
 
     extension=constcache.so  
  ; The key of semaphore(integer,user-defined)  
@@ -23,7 +23,7 @@
 
     constcache.hashpower=16
 
-####The API of ConstCache####  
+####The API of ConstCache  
 
 It imitates the API of memcache, and adds some additional methods. Usages are as follows:  
 
