@@ -1,6 +1,6 @@
 ####Design idea  
 
-1. Make an optimizer extension for PHP by C language  
+1. Make an extension for PHP by C language  
 2. The API is same as memcache.
 3. The storage granularity is small. For example, the 'key' is a record of certain table.  
 4. It uses the way of sharing memory to store data.  
