@@ -3,7 +3,8 @@
 1. Make an extension for PHP by C language  
 2. The API is same as memcache. 
 3. It uses the way of sharing memory to store data.  
-4. In order to being beneficial to performance optimize, the data will never be deleted (can be clear all)  
+4. In order to being beneficial to performance optimize, the data will never be deleted (can be clear all).  
+5. It read data at a very fast rate.
 
 ####Configuration  
 
