@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package packagerversion="1.8.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.8.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
   <name>ConstCache</name>
   <channel>pecl.php.net</channel>
   <summary>A php extension in C language</summary>
-  <description>Provides API the same as memcache and small storage granularity (size). It uses the way of sharing memory to store data for performance optimize and it reads data at a very fast rate.</description>
+  <description>Provides API the same as memcache and small storage granularity . It uses the way of sharing memory to store data for performance optimize and</description> 
+  <description>the System V semaphore to realize the readwriteLock so that it can have high performanc.</description>
   <lead>
     <name>Angela Song</name>
     <user>angelas</user>
@@ -23,25 +25,30 @@
   <license uri="http://www.php.net/license/3_01.txt">PHP License</license>
   <notes>First stable release</notes>
   <filelist>
-    <file role="doc" name="LICENSE" debug="na" />
-    <file role="doc" name="README.md" debug="na" />
-    <file role="doc" name="test" debug="na" />
-    <file role="src" name="assoc.c" debug="na" />
-    <file role="src" name="assoc.h" debug="na" />
-    <file role="src" name="constcache.c" debug="na" />
-    <file role="src" name="fastcache.c" debug="na" />
-    <file role="src" name="fastcache_imp.h" debug="na" />
-    <file role="src" name="fastcache_imp.c" debug="na" />
-    <file role="src" name="fcadmin.c" debug="na" />
-    <file role="src" name="config.m4" debug="na" />
-    <file role="src" name="hash.c" debug="na" />
-    <file role="src" name="hash.h" debug="na" />
-    <file role="src" name="php_constcache.h" debug="na" />
-    <file role="src" name="items.h" debug="na" />
-    <file role="src" name="items.h" debug="na" />
-    <file role="src" name="slabs.c" debug="na" />
-    <file role="src" name="slabs.h" debug="na" />
-    <file role="src" name="test.c" debug="na" />
+    
+    <file md5sum="84ff87f1f9a2990f80669bfb48183f91" name="LICENSE." role="doc"  />
+    <file md5sum="98d72ad1a75d1f7bfff60fe2f998c089" name="README.md" role="doc" />
+    <file md5sum="59d50eaef3d42b97b2d5ec5292b9f1eb" name="test" role="doc" />
+    <file md5sum="560de80a72bb20c592161775001d313c" name="constcache.ini" role="doc" />
+    <file md5sum="7bfcce6277931c70c9a729503df33c5f" name="assoc.c" role="src"  />
+    <file md5sum="0fec1c91abc9dbe4a48c869bd1794e8a" name="assoc.h" role="src" />
+    <file md5sum="b3816de1f9e4e6e3b0dfc3af8752aad9" name="constcache.c" role="src" />
+    <file md5sum="9bb725be5dc88225e151d4e339ebe2b3" name="fastcache.h" role="src" />
+    <file md5sum="94a0cddb8fe9f74412da29089841f9b8" name="fastcache_imp.h" role="src" />
+    <file md5sum="704798308800306fd4ef0b33dff3e25a" name="fastcache_imp.c" role="src" />
+    <file md5sum="53f91ad47b6c28a1e1c369e5c3cdbd70" name="fcadmin.c" role="src" />
+    <file md5sum="21ec0bdeb9a5c6cd2c2e0bfe186d4bcb" name="config.m4" role="src" />
+    <file md5sum="cf1c5f031a55f2d4b072c6b0f1b5b951" name="hash.c" role="src" />
+    <file md5sum="5417c481002b41baab3325010f2ef9ae" name="hash.h" role="src" />
+    <file md5sum="6c93ac060e2d908169e37ea0654653e9" name="php_constcache.h" role="src" />
+    <file md5sum="98099b8be825191e2147f690077d5776" name="items.h" role="src" />
+    <file md5sum="4ccee39dc2b74f29ccea9e52996b2a5b" name="slabs.c" role="src" />
+    <file md5sum="13c95e0056afcd48f2ebe240c5b35068" name="slabs.c" role="src" />
+    <file md5sum="2a7717edbbbeac6be36cab047091eabc" name="slabs.h" role="src" />
+    <file md5sum="a482dfebe0eb2df70dfaf2f63f1662d0" name="test.c" role="src" />
+    <file md5sum="9b235e937b4d051aeece31824a881774" name="bench.php" role="test" />
+    <file md5sum="40e4e1ad11098754a79ef9c79138af2b" name="TestResults.doc" role="test" />
+    
   </filelist>
 </package>
 

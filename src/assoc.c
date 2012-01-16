@@ -1,8 +1,11 @@
 /* 
  * assoc.c
  */
-/*+---------------------------------------------------------------------------+
-  |Copyright (c) 2008-2011 Beijing Kunlun Tech Co., Ltd.  All rights reserved.|
+/*
+ * Copyright (c) 2008-2012 Beijing Kunlun Tech Co., Ltd.  All rights reserved.
+ * Use is subject to license terms.
+ */
+/*
   +---------------------------------------------------------------------------+
   | This source file is subject to version 3.01 of the PHP license,           |
   | that is bundled with this package in the file LICENSE, and is             |

@@ -1,10 +1,10 @@
 ####Design idea  
 
 1. Make an extension for PHP by C language  
-2. The API is same as memcache. 
-3. It uses the way of sharing memory to store data.  
-4. In order to being beneficial to performance optimize, the data will never be deleted (can be clear all).  
-5. It reads data at a very fast rate.
+2. The API is same as memcache.
+3. It uses the System V semaphore to realize the readwriteLock and has high performance. 
+4. It uses the way of sharing memory to store data.  
+5. In order to being beneficial to performance optimize, the data will never be deleted (can be clear all).  
 
 ####Configuration  
 
