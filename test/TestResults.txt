@@ -1,0 +1,141 @@
+                         Contrast Test between Constcache and Memcached
+
+*Summary*
+
+This paper will introduce the contrast test between constcache and memcached. The test program references the ＆memslap＊.
+
+*How to use the test program*
+
+  *Command Parameters*ㄩ
+
+    bench.php -ttype -cconcurrency -mmethod -sserver -nnumber -llength -aamend -i 每r
+
+  *Parameters Introduction*ㄩ
+
+"type"         Test type. It supports constcache and memcache so far.
+"concurrency"  Concurrency value. The default value is 10 and the upper limit is 999.
+"method"       Which kind of operation is tested. It supports the ＆get＊ and ＆set＊ so far.
+"server"       The memcached needs to be specified the connection parameter in the format of ＆ip:port＊
+"number"       Operate number. The default value is 10000 and the upper limit is 1000000.
+"length"       Record length. The default value is 1000.
+"amend"        Waiting time. In order that the concurrency can synchronous execute, the process need                     waiting for the same moment to execute. The ＆amend＊ can adjust the waiting time, and the                bigger it is set, the longer waiting time is. The default value is 3 and the upper limit                  is 20.
+"i"            When testing the ＆get＊, you should use the parameter ＆i＊ to load data.
+"r"            When testing the memcached, you can add the parameter ＆r＊ to shield the data compression                function and it＊s open by default.
+
+  *Environment*:
+
+Based on the memory limit, the upper limit of the parameter ＆operate number*concurrency value＊ is 1000000. Please set the memory parameters of memcached and constcache over 2G when you test.
+
+As the constcache is native operation, the memcached should also be native.
+
+The constcache has a parameter ＆hashpower＊ and it＊s 16 by default. The value in the parenthesis of ＆constcache()＊ is exactly this parameter.
+
+  *Introduction Of Test Program*ㄩ
+
+The length of keys are all 100, the names are all different.
+
+The length of value is depending on the parameters setting. All the keys and values are the same in one test.
+
+  *Command Examples* ㄩ
+
+    # Test memcached, connect the native 12323 port, write 10000 pieces and concurrency 10
+    bench.php -tmemcached -s127.0.0.1:12321 -n10000 -c10
+    # Test constcache, read 20000 pieces and concurrency 3. The length of each piece is 2048. It writes       loading data before read.
+    bench.php -tconstcache -mget -n20000 -c3 -l2048 -i
+
+*Results*
+
+According to test data, the analysis results are as follows:
+
+Compared with the uncompressed memcached, the constcache(20) takes less memory space, but its write performance isn＊t better.
+
+Compared with the compressed memcached, the write performance of constcache(20) is above 30% higher in the high concurrent cases.
+
+In the high concurrent cases, the write performance of constcache(20) is above 30% higher than constcache(16) and the memory used of constcache(20) doesn＊t increase obviously.
+
+Compared with memcached, the read performance of constcache is dozens of times higher. And the more concurrency value, the higher performance it has.
+
+In the high concurrent cases, the read performance of constcache(16) would fall sharply.
+
+So we can get the following conclusion:
+
+Compared with the compressed (default) memcached, the write performance of constcache is above 30% higher and the read performance is above 80 times higher in the high concurrent cases.
+
+Note: This test program has ignored the connecting factors, so the performance in the practical application environment will be higher.
+
+*Test Data*
+
+Data length: 1KB, times: 10000, write performance contrast 
+
+    bench.php -tconstcache -n10000 -l1024
+    bench.php -tmemcached -s127.0.0.1:12321 -n10000 -l1024
+    bench.php -tmemcached -s127.0.0.1:12321 -n10000 -l1024 每r
+
+ ------------------------------------------------------------------------------------------------------
+|concurrency|   constcache(16)    |   constcache(20)    |memcached(compressed) |memcached(uncompressed)|
+|  value    |Time-consuming|Memory|Time-consuming|Memory|Time-consuming|Memory |Time-consuming |Memory |
+ ------------------------------------------------------------------------------------------------------
+|           |     (s)      | (M)  |     (s)      | (M)  |      (s)     |  (M)  |      (s)      |  (M)  |	
+ ------------------------------------------------------------------------------------------------------		
+| 1         |	  0.034	   | 11.6 |	0.036    | 19.1	|     0.781    |  3.36 |     0.281     | 16.7  |
+ ------------------------------------------------------------------------------------------------------
+| 2         |	  0.446	   | 22.7 |	0.784	 | 30.2 |     1.602    |  5.42 |     1.037     |  31   |
+ ------------------------------------------------------------------------------------------------------
+| 5         |     3.107	   |  56  |	2.969    | 63.5	|     4.288    |  11.6 |     3.792     |  74.1 |
+ ------------------------------------------------------------------------------------------------------
+| 10	    |    13.281    |111.51|    13.372	 |  119	|      12.2    |  21.4 |     12.735    | 147.3 |
+ ------------------------------------------------------------------------------------------------------
+| 20        |	 58.049    |222.52|    53.299    |  230 |     57.759   |  40.9 |     55.931    | 292.9 |
+ ------------------------------------------------------------------------------------------------------
+| 50        |    412.924   |555.54|    343.852   |  563	|     497.539  |  99.6 |     324.268   | 729.2 |
+ ------------------------------------------------------------------------------------------------------
+| 100       |	 2370.85   |1110.6|    1463.31   | 1118 |     2457.78  |  198.5|     1506.05   | 1457.5|
+ ------------------------------------------------------------------------------------------------------
+
+Note: Because the ＆value＊ has many repeat characters and the compression effect of compressed memcached is good, the use of memory is little.
+
+Data length: 1KB, times: 10000, read performance contrast
+
+    bench.php -tconstcache -n10000 -l1024 -mget -i
+    bench.php -tmemcached -s127.0.0.1:12321 -n10000 -l1024 -mget -i
+    bench.php -tmemcached -s127.0.0.1:12321 -n10000 -l1024 -mget -i 每r
+
+ ------------------------------------------------------------------------------------------------------
+|concurrency|   constcache(16)    |   constcache(20)    |memcached(compressed) |memcached(uncompressed)|
+|  value    |Time-consuming|Memory|Time-consuming|Memory|Time-consuming|Memory |Time-consuming |Memory |
+ ------------------------------------------------------------------------------------------------------
+|           |     (s)      | (M)  |     (s)      | (M)  |      (s)     |  (M)  |      (s)      |  (M)  |	
+ ------------------------------------------------------------------------------------------------------	
+| 1         |	0.022	   |      |    0.025     |      |     0.582    |       |     0.593     |       |
+ ------------------------------------------------------------------------------------------------------	
+| 2         |	0.056	   |      |    0.059     |      |     1.537    |       |     1.022     |       |
+ ------------------------------------------------------------------------------------------------------ 
+| 5         |	0.189	   |      |    0.183     |      |     2.73     |       |     2.909     |       |
+ ------------------------------------------------------------------------------------------------------ 
+| 10        |	0.71 	   |      |    0.681     |      |     8.366    |       |     7.94      |       |
+ ------------------------------------------------------------------------------------------------------ 
+| 20        |	1.623	   |      |    1.184     |      |     26.211   |       |     35.711    |       |
+ ------------------------------------------------------------------------------------------------------ 
+| 50        |	7.066	   |      |    2.98      |      |     232.114  |       |     243.525   |       |
+ ------------------------------------------------------------------------------------------------------ 
+| 100       |	102.543    |      |    9.265     |      |     1115.04  |       |     1098.32   |       |
+ ------------------------------------------------------------------------------------------------------ 
+	
+Data length: 1KB, times: 1000000, write the performance contrast
+
+    bench.php -tconstcache -n1000000 -l1024 -mget -i
+    bench.php -tmemcached -s127.0.0.1:12321 -n1000000 -l1024 -mget -i
+    bench.php -tmemcached -s127.0.0.1:12321 -n1000000 -l1024 -mget -i 每r
+
+
+ ------------------------------------------------------------------------------------------------------
+|concurrency|   constcache(16)    |   constcache(20)    |memcached(compressed) |memcached(uncompressed)|
+|  value    |Time-consuming|Memory|Time-consuming|Memory|Time-consuming|Memory |Time-consuming |Memory |
+ ------------------------------------------------------------------------------------------------------
+|           |     (s)      | (M)  |     (s)      | (M)  |      (s)     |  (M)  |      (s)      |  (M)  |	
+ ------------------------------------------------------------------------------------------------------	
+| 1         |	 5.196	   |      |    2.396     |      |     47.3     |       |     44.573    |       |
+ ------------------------------------------------------------------------------------------------------	
+
+
+
