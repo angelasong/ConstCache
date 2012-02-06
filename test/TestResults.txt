@@ -18,17 +18,19 @@ This paper will introduce the contrast test between constcache and memcached. Th
 "server"       The memcached needs to be specified the connection parameter in the format of ¡®ip:port¡¯
 "number"       Operate number. The default value is 10000 and the upper limit is 1000000.
 "length"       Record length. The default value is 1000.
-"amend"        Waiting time. In order that the concurrency can synchronous execute, the process need                     waiting for the same moment to execute. The ¡®amend¡¯ can adjust the waiting time, and the                bigger it is set, the longer waiting time is. The default value is 3 and the upper limit                  is 20.
+"amend"        Waiting time. In order that the concurrency can synchronous execute, the process need waiting for the same                moment to execute. The ¡®amend¡¯ can adjust the waiting time, and the bigger it is set, the longer waiting                time is. The default value is 3 and the upper limit is 20.
 "i"            When testing the ¡®get¡¯, you should use the parameter ¡®i¡¯ to load data.
 "r"            When testing the memcached, you can add the parameter ¡®r¡¯ to shield the data compression                function and it¡¯s open by default.
 
   *Environment*:
 
-Based on the memory limit, the upper limit of the parameter ¡®operate number*concurrency value¡¯ is 1000000. Please set the memory parameters of memcached and constcache over 2G when you test.
+Based on the memory limit, the upper limit of the parameter ¡®operate number*concurrency value¡¯ is 1000000. Please set
+the memory parameters of memcached and constcache over 2G when you test.
 
 As the constcache is native operation, the memcached should also be native.
 
-The constcache has a parameter ¡®hashpower¡¯ and it¡¯s 16 by default. The value in the parenthesis of ¡®constcache()¡¯ is exactly this parameter.
+The constcache has a parameter ¡®hashpower¡¯ and it¡¯s 16 by default. The value in the parenthesis of ¡®constcache()¡¯ is
+exactly this parameter.
 
   *Introduction Of Test Program*£º
 
@@ -40,7 +42,8 @@ The length of value is depending on the parameters setting. All the keys and val
 
     # Test memcached, connect the native 12323 port, write 10000 pieces and concurrency 10
     bench.php -tmemcached -s127.0.0.1:12321 -n10000 -c10
-    # Test constcache, read 20000 pieces and concurrency 3. The length of each piece is 2048. It writes       loading data before read.
+    # Test constcache, read 20000 pieces and concurrency 3. The length of each piece is 2048. It writes loading data
+before read.
     bench.php -tconstcache -mget -n20000 -c3 -l2048 -i
 
 *Results*
@@ -49,19 +52,24 @@ According to test data, the analysis results are as follows:
 
 Compared with the uncompressed memcached, the constcache(20) takes less memory space, but its write performance isn¡¯t better.
 
-Compared with the compressed memcached, the write performance of constcache(20) is above 30% higher in the high concurrent cases.
+Compared with the compressed memcached, the write performance of constcache(20) is above 30% higher in the high concurrent
+cases.
 
-In the high concurrent cases, the write performance of constcache(20) is above 30% higher than constcache(16) and the memory used of constcache(20) doesn¡¯t increase obviously.
+In the high concurrent cases, the write performance of constcache(20) is above 30% higher than constcache(16) and the
+memory used of constcache(20) doesn¡¯t increase obviously.
 
-Compared with memcached, the read performance of constcache is dozens of times higher. And the more concurrency value, the higher performance it has.
+Compared with memcached, the read performance of constcache is dozens of times higher. And the more concurrency value, the
+higher performance it has.
 
 In the high concurrent cases, the read performance of constcache(16) would fall sharply.
 
 So we can get the following conclusion:
 
-Compared with the compressed (default) memcached, the write performance of constcache is above 30% higher and the read performance is above 80 times higher in the high concurrent cases.
+Compared with the compressed (default) memcached, the write performance of constcache is above 30% higher and the read
+performance is above 80 times higher in the high concurrent cases.
 
-Note: This test program has ignored the connecting factors, so the performance in the practical application environment will be higher.
+Note: This test program has ignored the connecting factors, so the performance in the practical application environment
+will be higher.
 
 *Test Data*
 
@@ -92,7 +100,8 @@ Data length: 1KB, times: 10000, write performance contrast
 | 100       |	 2370.85   |1110.6|    1463.31   | 1118 |     2457.78  |  198.5|     1506.05   | 1457.5|
  ------------------------------------------------------------------------------------------------------
 
-Note: Because the ¡®value¡¯ has many repeat characters and the compression effect of compressed memcached is good, the use of memory is little.
+Note: Because the ¡®value¡¯ has many repeat characters and the compression effect of compressed memcached is good, the use
+of memory is little.
 
 Data length: 1KB, times: 10000, read performance contrast
 
