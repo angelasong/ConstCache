@@ -18,9 +18,12 @@ This paper will introduce the contrast test between constcache and memcached. Th
 "server"       The memcached needs to be specified the connection parameter in the format of ¡®ip:port¡¯
 "number"       Operate number. The default value is 10000 and the upper limit is 1000000.
 "length"       Record length. The default value is 1000.
-"amend"        Waiting time. In order that the concurrency can synchronous execute, the process need waiting for the same                moment to execute. The ¡®amend¡¯ can adjust the waiting time, and the bigger it is set, the longer waiting                time is. The default value is 3 and the upper limit is 20.
+"amend"        Waiting time. In order that the concurrency can synchronous execute, the process need waiting for the same
+               moment to execute. The ¡®amend¡¯ can adjust the waiting time, and the bigger it is set, the longer waiting
+               time is. The default value is 3 and the upper limit is 20.
 "i"            When testing the ¡®get¡¯, you should use the parameter ¡®i¡¯ to load data.
-"r"            When testing the memcached, you can add the parameter ¡®r¡¯ to shield the data compression                function and it¡¯s open by default.
+"r"            When testing the memcached, you can add the parameter ¡®r¡¯ to shield the data compression function and it
+               is open by default.
 
   *Environment*:
 
@@ -50,7 +53,8 @@ before read.
 
 According to test data, the analysis results are as follows:
 
-Compared with the uncompressed memcached, the constcache(20) takes less memory space, but its write performance isn¡¯t better.
+Compared with the uncompressed memcached, the constcache(20) takes less memory space, but its write performance isn¡¯t
+better.
 
 Compared with the compressed memcached, the write performance of constcache(20) is above 30% higher in the high concurrent
 cases.
