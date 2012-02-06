@@ -47,7 +47,7 @@
     <file md5sum="2a7717edbbbeac6be36cab047091eabc" name="slabs.h" role="src" />
     <file md5sum="a482dfebe0eb2df70dfaf2f63f1662d0" name="test.c" role="src" />
     <file md5sum="9b235e937b4d051aeece31824a881774" name="bench.php" role="test" />
-    <file md5sum="40e4e1ad11098754a79ef9c79138af2b" name="TestResults.doc" role="test" />
+    <file md5sum="090fe1f8287222bf2fdadd5076727a4c" name="TestResults.txt" role="test" />
     
   </filelist>
 </package>
