@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package packagerversion="1.8.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.8.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" 
+         xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd 
+                             http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
   <name>ConstCache</name>
   <channel>pecl.php.net</channel>
   <summary>A php extension in C language</summary>
-  <description>Provides API the same as memcache and small storage granularity . It uses the way of sharing memory to store data for performance optimize and</description> 
-  <description>the System V semaphore to realize the readwriteLock so that it can have high performanc.</description>
+  <description>Provides API the same as memcache and small storage granularity . It uses the way of sharing</description> 
+  <description> memory to store data for performance optimize and the System V semaphore to realize the </description>
+  <description> readwriteLock so that it can have high performanc.</description>
   <lead>
     <name>Angela Song</name>
     <user>angelas</user>
